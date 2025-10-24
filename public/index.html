@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binance Futures Screener — rev5.2_click_full</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Binance Futures Screener — <span class="sub">rev5.2_click_full</span></h1>
+
+    <div class="tabs">
+      <button class="tab active" data-mode="between">Between</button>
+      <button class="tab" data-mode="high">High</button>
+      <button class="tab" data-mode="low">Low</button>
+    </div>
+
+    <div class="controls">
+      <label class="row"><input id="autoRefresh" type="checkbox" checked> Auto refresh</label>
+      <label>Интервал:
+        <select id="autoPeriod">
+          <option value="30000">30s</option>
+          <option value="60000" selected>60s</option>
+          <option value="120000">120s</option>
+        </select>
+      </label>
+      <label class="row"><input id="countCross" type="checkbox"> Считать пересечения</label>
+      <label class="row"><input id="useWicks" type="checkbox" checked> Учитывать тени свечей</label>
+      <label>Мин. 24h Volume (USDT):
+        <input id="min24hVol" type="number" value="100000000" step="10000000">
+      </label>
+      <label>Мин. Daily Vol %:
+        <input id="minVolPct" type="number" value="0" step="0.1">
+      </label>
+      <label>Открывать:
+        <select id="openWith">
+          <option value="tv" selected>TradingView</option>
+          <option value="binance">Binance</option>
+          <option value="coinglass">Coinglass</option>
+        </select>
+      </label>
+      <label>Сортировать Between по:
+        <select id="sortBetween">
+          <option value="toHigh">% до High</option>
+          <option value="toLow">% до Low</option>
+          <option value="vol">% Daily Vol</option>
+        </select>
+      </label>
+      <button id="refreshNow">Refresh now</button>
+    </div>
+
+    <div class="help">Between: сортировка (возр.) по % к High/Low + фикс «Только без пересечений»</div>
+
+    <div class="status"><span id="statusText">Downloading...</span></div>
+
+    <div id="errorBox" class="error" hidden></div>
+
+    <table id="table">
+      <thead>
+        <tr>
+          <th>Symbol</th><th>Price</th><th>Prev High</th><th>Prev Low</th>
+          <th>% до High</th><th>% до Low</th><th>Daily Vol %</th><th>24h QuoteVol (USDT)</th>
+          <th>Updated</th><th>Open</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
